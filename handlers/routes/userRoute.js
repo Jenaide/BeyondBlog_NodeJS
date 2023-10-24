@@ -161,7 +161,7 @@ router.put('/edit-post/:id', isLoggedIn, async (req, res) => {
             body: req.body.body,
             updatedAt: Date.now()
         });
-        res.redirect(`/edit-post/${req.params.id}`);
+        res.redirect(`/post/${req.params.id}`);
     } catch (err) {
         console.log(err);
     }
