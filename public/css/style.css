@@ -245,7 +245,7 @@ img{
 }
 
 .articles_ul li:not(:last-child){
-    border-bottom: 1px solid var(--grey-light);
+    border-bottom: 1px solid var(--grey);
 }
 
 .articles_ul li:hover{
@@ -282,7 +282,7 @@ img{
     visibility: hidden;
     transform: translateY(-100px);
     background-color: var(--black);
-    padding: 4px 0;
+    padding: 4px 4px;
     position: absolute;
     left: 0;
     right: 0;

@@ -23,7 +23,7 @@ const isLoggedIn = (req, res, next) => {
     }
 }
 
-/* GET Admin - login */
+/* GET user - login */
 router.get('/login', async (req, res) => {
     try {
         const locals = {
@@ -36,7 +36,7 @@ router.get('/login', async (req, res) => {
     }
 });
 
-/* POST admin - check login */
+/* POST user - check login */
 router.post('/login', async (req, res) => {
     try {
         const username = req.body.username;
@@ -60,7 +60,7 @@ router.post('/login', async (req, res) => {
     }
 });
 
-/* GET Admin - register */
+/* GET user - register */
 router.get('/signup', async (req, res) => {
     try {
         const locals = {
@@ -74,7 +74,7 @@ router.get('/signup', async (req, res) => {
     }
 });
 
-/* POST admin - register */
+/* POST user - register */
 router.post('/signup', async (req, res) => {
     try {
         const salt = await bcrypt.genSalt(10);
@@ -90,7 +90,7 @@ router.post('/signup', async (req, res) => {
     }
 });
 
-/* GET admin - dashboard */
+/* GET user - dashboard */
 router.get('/dashboard', isLoggedIn, async (req, res) => {
     try {
         const locals = {
@@ -105,7 +105,7 @@ router.get('/dashboard', isLoggedIn, async (req, res) => {
     
 });
 
-/* GET admin - Create New post */
+/* GET  user - Create New post */
 router.get('/add-post', isLoggedIn, async (req, res) => {
     try {
         const locals = {
@@ -119,7 +119,7 @@ router.get('/add-post', isLoggedIn, async (req, res) => {
     }
 });
 
-/* POST admin - Create New post */
+/* POST user - Create New post */
 router.post('/add-post', isLoggedIn, async (req, res) => {
     try {
         const newPost = new Posts({ 
@@ -134,7 +134,7 @@ router.post('/add-post', isLoggedIn, async (req, res) => {
     }
 });
 
-/* GET admin - get edit-post */
+/* GET user - get edit-post */
 router.get('/edit-post/:id', isLoggedIn, async (req, res) => {
     try {
         const locals = {
@@ -153,7 +153,7 @@ router.get('/edit-post/:id', isLoggedIn, async (req, res) => {
     }
 });
 
-/* PUT admin - edit post */
+/* PUT user - edit post */
 router.put('/edit-post/:id', isLoggedIn, async (req, res) => {
     try {
         await Posts.findByIdAndUpdate(req.params.id, {
@@ -167,7 +167,7 @@ router.put('/edit-post/:id', isLoggedIn, async (req, res) => {
     }
 });
 
-/* DELETE admin - delete post */
+/* DELETE user - delete post */
 router.delete('/delete-post/:id', isLoggedIn, async (req, res) => {
     try {
         await Posts.deleteOne( { _id: req.params.id } );
@@ -177,7 +177,7 @@ router.delete('/delete-post/:id', isLoggedIn, async (req, res) => {
     }
 });
 
-/* GET admin - logout */
+/* GET user - logout */
 router.get('/logout', isLoggedIn, async (req , res) => {
     res.clearCookie('token');// clears the cookie
     res.redirect('/');
